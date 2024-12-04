@@ -57,6 +57,35 @@ public class Main {
     }
 
     private static void employeeMenu() {
-        // Handle employee actions
+        while (true) {
+            String menu = """
+            Employee Menu:
+            1. Add Vehicle
+            2. Update Rates
+            3. List All Bookings
+            4. List All Customers
+            5. List All Vehicles
+            6. List All Employees
+            7. Return to Main Menu
+            """;
+
+            String choice = JOptionPane.showInputDialog(menu);
+            if (choice == null || choice.equals("7")) break; // Exit to the main menu
+
+            try {
+                switch (choice) {
+                    case "1" -> addVehicle();
+                    case "2" -> updateRates();
+                    case "3" -> listBookings();
+                    case "4" -> listCustomers();
+                    case "5" -> listVehicles();
+                    case "6" -> listEmployees();
+                    default -> JOptionPane.showMessageDialog(null, "Invalid choice. Please try again.");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            }
+        }
     }
+
 }
