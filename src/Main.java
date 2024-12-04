@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import Person.Person;
@@ -85,6 +86,50 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Customer signed up successfully! Customer No: " + custNo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error during sign up: " + e.getMessage());
+        }
+    }
+
+    private static void bookCar() {
+        try {
+            // Display list of available vehicles
+            String vehicleList = "Available Vehicles:\n";
+            for (int i = 0; i < fleet.size(); i++) {
+                Vehicle vehicle = fleet.get(i);
+                vehicleList += (i + 1) + ". " +
+                        vehicle.getManufacturer() + " " + vehicle.getModel() + " (ID: " + vehicle.getId() + ")\n";
+            }
+
+            String selectedVehicleIndex = JOptionPane.showInputDialog(vehicleList + "\nSelect vehicle number:");
+            int vehicleIndex = Integer.parseInt(selectedVehicleIndex) - 1;
+
+            if (vehicleIndex < 0 || vehicleIndex >= fleet.size()) {
+                throw new IllegalArgumentException("Invalid vehicle selection.");
+            }
+            Vehicle selectedVehicle = fleet.get(vehicleIndex);
+
+            // Get customer number
+            String custNumber = JOptionPane.showInputDialog("Enter your customer number:");
+            int custNo = Integer.parseInt(custNumber);
+
+            Customer customer = findCustomerById(custNo);
+
+            // Booking details
+            String pickUpDate = JOptionPane.showInputDialog("Enter pick-up date (yyyy-mm-dd):");
+            String pickUpTime = JOptionPane.showInputDialog("Enter pick-up time (HH:mm):");
+            String returnDate = JOptionPane.showInputDialog("Enter return date (yyyy-mm-dd):");
+            String returnTime = JOptionPane.showInputDialog("Enter return time (HH:mm):");
+            String pickUpLocation = JOptionPane.showInputDialog("Enter pick-up location:");
+
+            // Create booking
+            int bookingId = bookings.size() + 1;
+            Booking newBooking = new Booking(bookingId, selectedVehicle.getId(), custNo,
+                    LocalDate.parse(pickUpDate), LocalTime.parse(pickUpTime),
+                    LocalDate.parse(returnDate), LocalTime.parse(returnTime), pickUpLocation);
+
+            bookings.add(newBooking);
+            JOptionPane.showMessageDialog(null, "Booking created successfully! Booking ID: " + bookingId);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error during car booking: " + e.getMessage());
         }
     }
 
