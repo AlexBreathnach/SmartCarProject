@@ -1,11 +1,18 @@
-import Person.Customer;
-import Person.Employee;
-
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import Person.Person;
+import Person.Employee;
+import Person.Customer;
+
+import Vehicle.Vehicle;
+import Vehicle.Petrol;
+import Vehicle.SmartCity;
+import Vehicle.SmartElectric;
+import Vehicle.SmartTripper;
+import Vehicle.SmartVan;
 
 public class Main {
     private static ArrayList<Vehicle> fleet = new ArrayList<>();
