@@ -48,7 +48,12 @@ public class Main {
 
 
     private static void customerMenu() {
-        // Handle customer actions
+        customers.add(new Customer(1, "John", "Doe", "john.doe@example.com", "123 Main Street"));
+        customers.add(new Customer(2, "Jane", "Smith", "jane.smith@example.com", "456 Elm Street"));
+
+        employees.add(new Employee(1, "Alice", "Johnson", "alice.johnson@example.com", "789 Pine Avenue"));
+        employees.add(new Employee(2, "Bob", "Williams", "bob.williams@example.com", "101 Maple Drive"));
+
     }
 
     private static void employeeMenu() {
