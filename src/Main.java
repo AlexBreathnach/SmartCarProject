@@ -61,12 +61,11 @@ public class Main {
             String menu = """
             Employee Menu:
             1. Add Vehicle
-            2. Update Rates
-            3. List All Bookings
-            4. List All Customers
-            5. List All Vehicles
-            6. List All Employees
-            7. Return to Main Menu
+            2. List All Bookings
+            3. List All Customers
+            4. List All Vehicles
+            5. List All Employees
+            6. Return to Main Menu
             """;
 
             String choice = JOptionPane.showInputDialog(menu);
@@ -75,11 +74,10 @@ public class Main {
             try {
                 switch (choice) {
                     case "1" -> addVehicle();
-                    case "2" -> updateRates();
-                    case "3" -> listBookings();
-                    case "4" -> listCustomers();
-                    case "5" -> listVehicles();
-                    case "6" -> listEmployees();
+                    case "2" -> listBookings();
+                    case "3" -> listCustomers();
+                    case "4" -> listVehicles();
+                    case "5" -> listEmployees();
                     default -> JOptionPane.showMessageDialog(null, "Invalid choice. Please try again.");
                 }
             } catch (Exception e) {
@@ -112,6 +110,58 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
     }
+
+    private static void listBookings() {
+        //Initialisation
+        String bookingList = "Bookings:\n";
+
+        //Iterate through the list
+        for (Booking b : bookings) {
+            bookingList += "Booking ID: " + b.getBookingId() + //Unique Booking Id
+                    ", Vehicle ID: " + b.getVehicleId() + // Vehicle ID
+                    ", Customer No: " + b.getCustNo() + //Customer Number
+                    ", Pick-Up: " + b.getPickUpDate() + " " + b.getPickUpTime() + //Pick-up date + Time
+                    ", Return: " + b.getReturnDate() + " " + b.getReturnTime() + //Return date + Time
+                    ", Location: " + b.getPickUpLocation() + "\n"; //Pickup Location
+        }
+        JOptionPane.showMessageDialog(null, bookingList);
+    }
+
+    private static void listCustomers() {
+        String customerList = "Customers:\n";
+        for (Customer c : customers) {
+            customerList += "Customer No: " + c.getCustNo() +
+                    ", Name: " + c.getFirstName() + " " + c.getLastName() +
+                    ", Email: " + c.getEmail() +
+                    ", Address: " + c.getAddress() + "\n";
+        }
+        JOptionPane.showMessageDialog(null, customerList);
+    }
+
+    private static void listVehicles() {
+        String vehicleList = "Fleet:\n";
+        for (Vehicle v : fleet) {
+            vehicleList += "Vehicle ID: " + v.getId() +
+                    ", Type: " + v.getClass().getSimpleName() +
+                    ", Manufacturer: " + v.getManufacturer() +
+                    ", Model: " + v.getModel() +
+                    ", Location: " + v.getLocation() + "\n";
+        }
+        JOptionPane.showMessageDialog(null, vehicleList);
+    }
+
+    private static void listEmployees() {
+        String employeeList = "Employees:\n";
+        for (Employee e : employees) {
+            employeeList += "Employee No: " + e.getEmpNo() +
+                    ", Name: " + e.getFirstName() + " " + e.getLastName() +
+                    ", Email: " + e.getEmail() +
+                    ", Address: " + e.getAddress() + "\n";
+        }
+        JOptionPane.showMessageDialog(null, employeeList);
+    }
+
+
 
 
 }
