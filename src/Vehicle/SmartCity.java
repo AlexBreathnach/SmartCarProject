@@ -2,41 +2,31 @@ package Vehicle;
 
 import java.time.LocalDate;
 
-public class SmartCity extends Vehicle {
-    private double engine;
-    private int co2;
+public class SmartCity extends Petrol {
+    private static final double HOURLY_RATE = 11.0;
+    private static final double DAILY_RATE = 55.0;
 
-    public SmartCity(int id, String regNo, String manufacturer, String model,
-                     LocalDate regDate, String location,
-                     double engine, int co2) {
-        super(id, regNo, manufacturer, model, regDate, location);
-        this.engine = engine;
-        this.co2 = co2;
+    public SmartCity(int id, String regNo, String manufacturer,
+                     String model, LocalDate regDate,
+                     String location, double engine, int co2) {
+
+        super(id, regNo, manufacturer, model, regDate, location, engine, co2);
     }
-
-    public double getEngine() {
-        return engine;
-    }
-
-    public void setEngine(double engine) {
-        this.engine = engine;
-    }
-
-    public int getCo2() {
-        return co2;
-    }
-
-    public void setCo2(int co2) {
-        this.co2 = co2;
-    }
-
-
 
     @Override
     public double calculateRate(int hours, double distance) {
-        double hourlyRate = 11.0;
         double mileageRate = (distance > 50) ? (distance - 50) * 0.25 : 0;
-        return hours * hourlyRate + mileageRate;
+        return (hours * HOURLY_RATE) + mileageRate;
     }
 
+    public void setRates(double hourlyRate, double dailyRate) {
+        // Adding updates to  hourly and daily rates
+    }
+
+    @Override
+    public String toString() {
+        return "SmartCity: " + super.toString() +
+                ", Hourly Rate: €" + HOURLY_RATE +
+                ", Daily Rate: €" + DAILY_RATE;
+    }
 }
