@@ -70,6 +70,24 @@ public class Main {
         }
     }
 
+    private static void signUp() {
+        try {
+            String firstName = JOptionPane.showInputDialog("Enter first name:");
+            String lastName = JOptionPane.showInputDialog("Enter last name:");
+            String email = JOptionPane.showInputDialog("Enter email:");
+            String address = JOptionPane.showInputDialog("Enter address:");
+
+            // Customer number (assuming a simple auto-increment based on list size)
+            int custNo = customers.size() + 1;
+            Customer customer = new Customer(custNo, firstName, lastName, email, address);
+            customers.add(customer);
+
+            JOptionPane.showMessageDialog(null, "Customer signed up successfully! Customer No: " + custNo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error during sign up: " + e.getMessage());
+        }
+    }
+
     private static void employeeMenu() {
         while (true) {
             String menu = """
