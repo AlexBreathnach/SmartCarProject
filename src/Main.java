@@ -48,12 +48,26 @@ public class Main {
 
 
     private static void customerMenu() {
-        customers.add(new Customer(1, "John", "Doe", "john.doe@example.com", "123 Main Street"));
-        customers.add(new Customer(2, "Jane", "Smith", "jane.smith@example.com", "456 Elm Street"));
+        String menu = """
+            Customer Menu:
+            1. Sign Up
+            2. Book a Car
+            3. Return a Car
+            4. Return to Main Menu
+            """;
+        String choice = JOptionPane.showInputDialog(menu);
 
-        employees.add(new Employee(1, "Alice", "Johnson", "alice.johnson@example.com", "789 Pine Avenue"));
-        employees.add(new Employee(2, "Bob", "Williams", "bob.williams@example.com", "101 Maple Drive"));
+        if (choice == null) return;  // Handle case if user cancels
 
+        switch (choice) {
+            case "1" -> JOptionPane.showMessageDialog(null, "Sign up feature.");
+            case "2" -> JOptionPane.showMessageDialog(null, "Book a car feature.");
+            case "3" -> JOptionPane.showMessageDialog(null, "Return a car feature.");
+            case "4" -> {
+                return;  // Return to main menu
+            }
+            default -> JOptionPane.showMessageDialog(null, "Invalid choice.");
+        }
     }
 
     private static void employeeMenu() {
