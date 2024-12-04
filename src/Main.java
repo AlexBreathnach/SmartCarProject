@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 import Person.Person;
@@ -21,7 +20,7 @@ public class Main {
     private static ArrayList<Employee> employees = new ArrayList<>();
 
     public static void main(String[] args) {
-        initializeDummyData();
+        DummyData();
         while (true) {
             String menu = """
                 Select an option:
@@ -40,9 +39,13 @@ public class Main {
         }
     }
 
-    private static void initializeDummyData() {
-        // Add sample data for fleet, customers, and employees
+    private static void DummyData() {
+        fleet.add(new SmartCity(1, "123-AB", "Nissan", "Micra", LocalDate.of(2023, 1, 1), "Limerick", 1.2, 150));
+        fleet.add(new SmartTripper(2, "456-CD", "Skoda", "Scala", LocalDate.of(2023, 5, 10), "Ennis", 1.6, 180));
+        fleet.add(new SmartElectric(3, "789-EF", "Kia", "EV6", LocalDate.of(2023, 3, 15), "Shannon", 77.4, 300));
+        fleet.add(new SmartVan(4, "012-GH", "Ford", "Transit", LocalDate.of(2023, 8, 20), "Foynes", 2.2, 200));
     }
+
 
     private static void customerMenu() {
         // Handle customer actions
