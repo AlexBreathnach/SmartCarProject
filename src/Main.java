@@ -88,4 +88,30 @@ public class Main {
         }
     }
 
+    private static void addVehicle() {
+        try {
+            String vehicleType = JOptionPane.showInputDialog("Enter vehicle type (SmartCity, SmartTripper, SmartElectric, SmartVan):");
+            String regNo = JOptionPane.showInputDialog("Enter registration number:");
+            String manufacturer = JOptionPane.showInputDialog("Enter manufacturer:");
+            String model = JOptionPane.showInputDialog("Enter model:");
+            String regDate = JOptionPane.showInputDialog("Enter registration date (yyyy-mm-dd):");
+            String location = JOptionPane.showInputDialog("Enter location (e.g., Limerick, Ennis, etc.):");
+
+            int id = fleet.size() + 1; // Auto-generate ID
+
+            switch (vehicleType.toLowerCase()) {
+                case "smartcity" -> fleet.add(new SmartCity(id, regNo, manufacturer, model, LocalDate.parse(regDate), location, 1.2, 150));
+                case "smarttripper" -> fleet.add(new SmartTripper(id, regNo, manufacturer, model, LocalDate.parse(regDate), location, 1.6, 180));
+                case "smartelectric" -> fleet.add(new SmartElectric(id, regNo, manufacturer, model, LocalDate.parse(regDate), location, 77.4, 300));
+                case "smartvan" -> fleet.add(new SmartVan(id, regNo, manufacturer, model, LocalDate.parse(regDate), location, 2.2, 200));
+                default -> throw new IllegalArgumentException("Invalid vehicle type.");
+            }
+
+            JOptionPane.showMessageDialog(null, "Vehicle added successfully!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+
+
 }
