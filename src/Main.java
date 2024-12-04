@@ -133,6 +133,15 @@ public class Main {
         }
     }
 
+    private static Customer findCustomerById(int custNo) throws IllegalArgumentException {
+        for (Customer customer : customers) {
+            if (customer.getCustNo() == custNo) {
+                return customer;
+            }
+        }
+        throw new IllegalArgumentException("Customer not found.");
+    }
+
     private static void employeeMenu() {
         while (true) {
             String menu = """
