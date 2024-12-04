@@ -142,6 +142,47 @@ public class Main {
         throw new IllegalArgumentException("Customer not found.");
     }
 
+    private static void returnCar() {
+        try {
+            String bookingIdInput = JOptionPane.showInputDialog("Enter booking ID:");
+            int bookingId = Integer.parseInt(bookingIdInput);
+
+            Booking booking = findBookingById(bookingId);
+
+            Vehicle vehicle = findVehicleById(booking.getVehicleId());
+
+            // Calculate charges
+            long hours = java.time.Duration.between(booking.getPickUpTime(), booking.getReturnTime()).toHours();
+            double distance = Double.parseDouble(JOptionPane.showInputDialog("Enter distance traveled (km):"));
+            double totalCost = vehicle.calculateRate((int) hours, distance);
+
+            JOptionPane.showMessageDialog(null, "Car returned successfully! Total cost: €" + totalCost);
+
+            // Remove booking (assuming a return ends the booking)
+            bookings.remove(booking);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error during car return: " + e.getMessage());
+        }
+    }
+
+    private static Booking findBookingById(int bookingId) throws IllegalArgumentException {
+        for (Booking booking : bookings) {
+            if (booking.getBookingId() == bookingId) {
+                return booking;
+            }
+        }
+        throw new IllegalArgumentException("Booking not found.");
+    }
+
+    private static Vehicle findVehicleById(int vehicleId) throws IllegalArgumentException {
+        for (Vehicle vehicle : fleet) {
+            if (vehicle.getId() == vehicleId) {
+                return vehicle;
+            }
+        }
+        throw new IllegalArgumentException("Vehicle not found.");
+    }
+
     private static void employeeMenu() {
         while (true) {
             String menu = """
